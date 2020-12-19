@@ -1,5 +1,5 @@
 <template>
-  <div class="stories" @click="flipStory" ref="stories">
+  <div class="stories" ref="stories">
     <InstaUser v-for="user in users" :user="user" :key="user.username" />
   </div>
 </template>
@@ -19,27 +19,21 @@ export default {
   },
   methods: {
     flipStory(e) {
-      if (e.target.nodeName !== "ARTICLE") return
-
       const stories = this.$refs.stories
 
       // offsetLeft is only relevant for desktop and tablets
       const median = stories.offsetLeft + stories.clientWidth / 2
-      /*  console.log({ median })
-      console.log({ simpleMedian: stories.clientWidth / 2 }) */
 
       const state = {
         current_story: stories.firstElementChild.lastElementChild,
       }
-
-      console.dir(stories)
     },
-    navigateStories(direction) {},
+    //navigateStories(direction) {},
   },
   mounted() {
     document.addEventListener("keydown", ({ key }) => {
       if (key !== "ArrowDown" || key !== "ArrowUp") {
-        navigateStories(key === "ArrowDown" ? "next" : "prev")
+        //  this.navigateStories(key === "ArrowDown" ? "next" : "prev")
       }
     })
   },

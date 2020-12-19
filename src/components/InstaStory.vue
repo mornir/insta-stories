@@ -1,26 +1,18 @@
 <template>
   <article
-    v-for="story in stories"
-    :key="story.img"
     class="story"
     :style="`--bg: url(${story.img})`"
+    :class="{ seen: story.seen }"
   ></article>
 </template>
 
 <script>
 export default {
   props: {
-    stories: {
-      type: Array,
-      require: false,
-      default: () => [],
-    },
-  },
-  components: {
-    bgImage() {
-      return {
-        "background-image": `url`,
-      }
+    story: {
+      type: Object,
+      require: true,
+      default: () => {},
     },
   },
 }
