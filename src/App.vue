@@ -1,5 +1,5 @@
 <template>
-  <div class="stories" ref="stories">
+  <div class="stories" ref="stories" data-cy="stories">
     <InstaUser v-for="user in users" :user="user" :key="user.username" />
   </div>
 </template>

@@ -1,6 +1,7 @@
 <template>
   <article
     class="story"
+    :data-cy="story.img"
     :style="`--bg: url(${story.img})`"
     :class="{ seen: story.seen }"
   ></article>
@@ -35,4 +36,12 @@ export default {
   opacity: 0;
   pointer-events: none;
 }
+
+/* .story img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-position: center;
+  object-fit: cover;
+} */
 </style>

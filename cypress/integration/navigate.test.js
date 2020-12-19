@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 context("Navigation", () => {
-  it("successfully loads data locally", () => {
+  it.only("goes to next story with tap", () => {
     /*   cy.intercept(
       'https://tufjlt9c.api.sanity.io/v1/data/query/production',
       (req) => req.reply(404)
@@ -9,12 +9,10 @@ context("Navigation", () => {
  */
 
     cy.visit("/")
-
-    cy.get('[data-cy="movie_70981"]').click()
-    /*     cy.wait('@api').its('response.statusCode').should('eq', 200) */
-    cy.contains("Prometheus")
-    cy.reload()
-    cy.contains("Prometheus")
+    cy.get('[data-cy="https://picsum.photos/id/1015/480/840"]').should(
+      "be.visible"
+    )
+    //cy.get('[data-cy="stories"]').click("right")
   })
 
   it("redirects to 404 page if movie does not exist", () => {
