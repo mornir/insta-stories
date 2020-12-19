@@ -1,6 +1,6 @@
 <template>
   <section class="user">
-    <InstaStories :stories="user.stories">
+    <InstaStories :stories="user.stories" />
   </section>
 </template>
 
