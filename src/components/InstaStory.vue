@@ -5,7 +5,7 @@
     :style="`--bg: url(${story.img})`"
     :class="{ seen: story.seen }"
   >
-    <img :src="story.img" alt="testing" />
+    <img :src="story.img" :alt="story.title" />
   </article>
 </template>
 

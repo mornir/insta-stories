@@ -1,5 +1,6 @@
 <template>
   <section class="user">
+    <h2 class="username">{{ "@" + user.username }}</h2>
     <InstaStory
       v-for="(story, index) in user.stories"
       :key="story.img"
@@ -61,8 +62,19 @@ export default {
 </script>
 
 <style>
+.container {
+  position: relative;
+  height: 100vh;
+}
+
+.username {
+  position: absolute;
+  right: 10px;
+}
+
 .user {
   display: grid;
+  position: relative;
   grid: [story] 1fr / [story] 1fr;
 
   scroll-snap-align: start;
