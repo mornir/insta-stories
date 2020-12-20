@@ -1,10 +1,5 @@
 <template>
-  <article
-    class="story"
-    :data-cy="story.img"
-    :style="`--bg: url(${story.img})`"
-    :class="{ seen: story.seen }"
-  >
+  <article class="story" :data-cy="story.img" :class="{ seen: story.seen }">
     <img :src="story.img" :alt="story.title" />
   </article>
 </template>
@@ -24,9 +19,6 @@ export default {
 <style>
 .story {
   grid-area: story;
-
-  /*   background-size: cover;
-  background-image: var(--bg); */
 
   user-select: none;
   touch-action: manipulation;
