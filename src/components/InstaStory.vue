@@ -1,6 +1,6 @@
 <template>
   <article class="story" :data-cy="story.img" :class="{ seen: story.seen }">
-    <figure class="h-full relative">
+    <figure class="h-screen relative">
       <img :src="story.img" :alt="story.title" />
       <figcaption class="absolute bottom-4 left-8 font-bold" v-if="story.title">
         {{ story.title }}
@@ -40,7 +40,12 @@ export default {
   display: block;
   height: 100%;
   width: 100%;
-  object-position: center;
+  object-position: top center;
   object-fit: cover;
+}
+
+figure {
+  /* mobile viewport bug fix */
+  height: -webkit-fill-available;
 }
 </style>
