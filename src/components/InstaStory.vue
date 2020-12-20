@@ -29,7 +29,7 @@ export default {
   user-select: none;
   touch-action: manipulation;
 
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 1, 1);
+  /*transition: opacity 0.3s cubic-bezier(0.4, 0, 1, 1);*/
 }
 
 .story.seen {

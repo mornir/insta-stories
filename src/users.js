@@ -16,7 +16,7 @@ export default [
     username: "marie",
     stories: [
       {
-        img: "https://picsum.photos/481/840",
+        img: "https://picsum.photos/480/840",
         likes: 0,
       },
     ],
@@ -25,7 +25,7 @@ export default [
     username: "shadow",
     stories: [
       {
-        img: "https://picsum.photos/481/841",
+        img: "https://picsum.photos/id/1025/480/840",
         likes: 0,
       },
     ],
@@ -34,15 +34,15 @@ export default [
     username: "jessie",
     stories: [
       {
-        img: "https://picsum.photos/482/840",
+        img: "https://picsum.photos/id/1024/480/840",
         likes: 0,
       },
       {
-        img: "https://picsum.photos/482/843",
+        img: "https://picsum.photos/id/1020/480/840",
         likes: 0,
       },
       {
-        img: "https://picsum.photos/482/844",
+        img: "https://picsum.photos/id/1069/480/840",
         likes: 0,
       },
     ],

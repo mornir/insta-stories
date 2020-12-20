@@ -1,5 +1,5 @@
 <template>
-  <section class="user" ref="user">
+  <section class="user">
     <InstaStory
       v-for="(story, index) in user.stories"
       :key="story.img"
@@ -23,18 +23,36 @@ export default {
   },
   methods: {
     navigateStories(index, $event) {
-      console.log(index)
-      const stories = this.$refs.user
+      const stories = document.querySelector(".stories")
+
       const median = stories.clientWidth / 2
 
       if ($event.clientX < median) {
         // click left, previous story
-        console.log("previous story")
+        console.info("previous story")
+
+        if (index >= this.user.stories.length - 1) {
+          console.info("previous user")
+          stories.scrollBy({
+            left: -50,
+            behavior: "smooth",
+          })
+          return
+        }
+
         this.user.stories[index + 1].seen = false
         this.user.stories[index].seen = false
       } else {
+        if (index <= 0) {
+          console.info("next user")
+          stories.scrollBy({
+            left: 50,
+            behavior: "smooth",
+          })
+          return
+        }
         // click right, next story
-        console.log("next story")
+        console.info("next story")
         this.user.stories[index].seen = true
       }
     },
