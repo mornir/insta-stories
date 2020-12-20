@@ -18,7 +18,7 @@ export default [
     username: "marie",
     stories: [
       {
-        title: "Red Mountains",
+        title: "Random photo",
         img: "https://picsum.photos/480/840",
         likes: 0,
       },

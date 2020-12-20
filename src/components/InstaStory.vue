@@ -1,6 +1,11 @@
 <template>
   <article class="story" :data-cy="story.img" :class="{ seen: story.seen }">
-    <img :src="story.img" :alt="story.title" />
+    <figure class="h-full">
+      <img :src="story.img" :alt="story.title" />
+      <figcaption class="absolute bottom-8" v-if="story.title">
+        {{ story.title }}
+      </figcaption>
+    </figure>
   </article>
 </template>
 

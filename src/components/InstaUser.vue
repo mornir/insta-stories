@@ -1,6 +1,6 @@
 <template>
-  <section class="user">
-    <h2 class="username">{{ "@" + user.username }}</h2>
+  <section class="user relative">
+    <h2 class="absolute right-8">{{ "@" + user.username }}</h2>
     <InstaStory
       v-for="(story, index) in user.stories"
       :key="story.img"
@@ -62,11 +62,6 @@ export default {
 </script>
 
 <style>
-.container {
-  position: relative;
-  height: 100vh;
-}
-
 .username {
   position: absolute;
   right: 10px;
