@@ -4,7 +4,9 @@
     :data-cy="story.img"
     :style="`--bg: url(${story.img})`"
     :class="{ seen: story.seen }"
-  ></article>
+  >
+    <img :src="story.img" alt="testing" />
+  </article>
 </template>
 
 <script>
@@ -23,13 +25,13 @@ export default {
 .story {
   grid-area: story;
 
-  background-size: cover;
-  background-image: var(--bg);
+  /*   background-size: cover;
+  background-image: var(--bg); */
 
   user-select: none;
   touch-action: manipulation;
 
-  /*transition: opacity 0.3s cubic-bezier(0.4, 0, 1, 1);*/
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 1, 1);
 }
 
 .story.seen {
@@ -37,11 +39,11 @@ export default {
   pointer-events: none;
 }
 
-/* .story img {
+.story img {
   display: block;
   height: 100%;
   width: 100%;
   object-position: center;
   object-fit: cover;
-} */
+}
 </style>

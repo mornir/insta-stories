@@ -25,7 +25,7 @@ export default {
     navigateStories(index, $event) {
       const stories = document.querySelector(".stories")
 
-      const median = stories.clientWidth / 2
+      const median = stories.offsetLeft + stories.clientWidth / 2
 
       if ($event.clientX < median) {
         // click left, previous story
