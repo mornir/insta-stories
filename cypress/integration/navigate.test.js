@@ -7,12 +7,21 @@ context("Navigation", () => {
       (req) => req.reply(404)
     ).as('api')
  */
-
+    //https://picsum.photos/id/1015/480/840
+    cy.viewport("iphone-6")
     cy.visit("/")
-    cy.get('[data-cy="https://picsum.photos/id/1015/480/840"]').should(
-      "be.visible"
+    cy.get('[data-cy="stories"]').click("right")
+    cy.get(".seen img").should(
+      "have.attr",
+      "src",
+      "https://picsum.photos/id/1016/480/840"
     )
-    //cy.get('[data-cy="stories"]').click("right")
+    cy.get('[data-cy="stories"]').click("left")
+    cy.get(".seen img").should(
+      "have.attr",
+      "src",
+      "https://picsum.photos/id/1015/480/840"
+    )
   })
 
   it("redirects to 404 page if movie does not exist", () => {
