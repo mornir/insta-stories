@@ -1,6 +1,8 @@
 <template>
   <section class="user relative">
-    <h2 class="absolute right-8">{{ "@" + user.username }}</h2>
+    <h2 class="absolute right-8 top-4 z-10 font-bold">
+      {{ "@" + user.username }}
+    </h2>
     <InstaStory
       v-for="(story, index) in user.stories"
       :key="story.img"
