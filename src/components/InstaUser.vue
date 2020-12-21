@@ -1,7 +1,7 @@
 <template>
   <section class="relative user">
     <h2 class="absolute z-10 font-bold right-8 top-4">
-      {{ "@" + user.username }}
+      {{ '@' + user.username }}
     </h2>
     <InstaStory
       v-for="(story, index) in user.stories"
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import InstaStory from "./InstaStory.vue"
+import InstaStory from './InstaStory.vue'
 export default {
   components: {
     InstaStory,
@@ -26,19 +26,19 @@ export default {
   },
   methods: {
     navigateStories(index, $event) {
-      const stories = document.querySelector(".stories")
+      const stories = document.querySelector('.stories')
 
       const median = stories.offsetLeft + stories.clientWidth / 2
 
       if ($event.clientX < median) {
         // click left, previous story
-        console.info("previous story")
+        console.info('previous story')
 
         if (index >= this.user.stories.length - 1) {
-          console.info("previous user")
+          console.info('previous user')
           stories.scrollBy({
-            left: -50,
-            behavior: "smooth",
+            left: -stories.clientWidth,
+            behavior: 'smooth',
           })
           return
         }
@@ -47,15 +47,15 @@ export default {
         this.user.stories[index].seen = false
       } else {
         if (index <= 0) {
-          console.info("next user")
+          console.info('next user')
           stories.scrollBy({
-            left: 50,
-            behavior: "smooth",
+            left: stories.clientWidth,
+            behavior: 'smooth',
           })
           return
         }
         // click right, next story
-        console.info("next story")
+        console.info('next story')
         this.user.stories[index].seen = true
       }
     },
