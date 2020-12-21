@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import users from './users'
+import users from './users.js'
 import InstaUser from './components/InstaUser.vue'
 
 export default {
