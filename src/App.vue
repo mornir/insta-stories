@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import users from "./users"
-import InstaUser from "./components/InstaUser.vue"
+import users from './users'
+import InstaUser from './components/InstaUser.vue'
 
 export default {
   components: {
@@ -15,6 +15,7 @@ export default {
   data() {
     return {
       users,
+      userIndex: 0,
     }
   },
   methods: {
@@ -28,13 +29,37 @@ export default {
         current_story: stories.firstElementChild.lastElementChild,
       }
     },
-    //navigateStories(direction) {},
   },
   mounted() {
-    document.addEventListener("keydown", ({ key }) => {
-      if (key !== "ArrowDown" || key !== "ArrowUp") {
-        //  this.navigateStories(key === "ArrowDown" ? "next" : "prev")
+    const stories = document.querySelector('.stories')
+    // stories.focus()
+    document.addEventListener('keydown', ({ key }) => {
+      if (key === 'ArrowLeft') {
+        this.userIndex--
+        stories.scrollBy({
+          left: -stories.clientWidth,
+          behavior: 'smooth',
+        })
+        return
       }
+
+      if (key === 'ArrowRight') {
+        this.userIndex++
+        stories.scrollBy({
+          left: stories.clientWidth,
+          behavior: 'smooth',
+        })
+        return
+      }
+
+      if (key === 'ArrowDown') {
+        console.log('arrowdone!')
+        return
+      }
+
+      /*         this.$once('hook:destroyed', () => {
+      document.removeEventListener('keydown', closeOnEsc)
+    }) */
     })
   },
 }
