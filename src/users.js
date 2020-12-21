@@ -1,52 +1,52 @@
 export default [
   {
-    username: "josh",
+    username: 'josh',
     stories: [
       {
-        title: "Water Valley",
-        img: "https://picsum.photos/id/1015/480/840",
+        title: 'Water Valley',
+        img: 'https://picsum.photos/id/1015/480/840',
         likes: 0,
       },
       {
-        title: "Red Mountains",
-        img: "https://picsum.photos/id/1016/480/840",
+        title: 'Red Mountains',
+        img: 'https://picsum.photos/id/1016/480/840',
         likes: 0,
       },
     ],
   },
   {
-    username: "marie",
+    username: 'marie',
     stories: [
       {
-        title: "Random photo",
-        img: "https://picsum.photos/480/840",
+        title: 'Random photo',
+        img: 'https://picsum.photos/id/1029/480/840',
         likes: 0,
       },
     ],
   },
   {
-    username: "shadow",
+    username: 'shadow',
     stories: [
       {
-        title: "Cute Dog",
-        img: "https://picsum.photos/id/1025/480/840",
+        title: 'Cute Dog',
+        img: 'https://picsum.photos/id/1025/480/840',
         likes: 0,
       },
     ],
   },
   {
-    username: "jessie",
+    username: 'jessie',
     stories: [
       {
-        img: "https://picsum.photos/id/1024/480/840",
+        img: 'https://picsum.photos/id/1024/480/840',
         likes: 0,
       },
       {
-        img: "https://picsum.photos/id/1020/480/840",
+        img: 'https://picsum.photos/id/1020/480/840',
         likes: 0,
       },
       {
-        img: "https://picsum.photos/id/1069/480/840",
+        img: 'https://picsum.photos/id/1069/480/840',
         likes: 0,
       },
     ],
