@@ -1,6 +1,6 @@
 <template>
-  <section class="user relative">
-    <h2 class="absolute right-8 top-4 z-10 font-bold">
+  <section class="relative user">
+    <h2 class="absolute z-10 font-bold right-8 top-4">
       {{ "@" + user.username }}
     </h2>
     <InstaStory
