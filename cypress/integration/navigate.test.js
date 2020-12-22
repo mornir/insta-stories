@@ -8,36 +8,36 @@ context('Navigation', () => {
     cy.get('[data-cy="stories"]').as('stories')
   })
 
-  it('goes to next and previous story with tap', () => {
+  it.only('goes to next and previous story with tap', () => {
     cy.get('@stories').click('right')
-
-    cy.get('.seen img')
-      .should('have.attr', 'src')
-      .and('eq', 'https://picsum.photos/id/1016/480/840')
+    cy.get('img[src*="1016"]').should('not.be.visible')
+    cy.get('.seen img').should('have.attr', 'src').and('contain', '1016')
 
     cy.get('@stories').click('left')
-    cy.get('img[src="https://picsum.photos/id/1016/480/840"]').should(
-      'not.have.class',
-      'seen'
-    )
+    cy.get('img[src*="1016"]').should('not.have.class', 'seen')
+    cy.get('img[src*="1016"]').should('be.visible')
   })
 
-  it.only('goes to next and previous user', () => {
+  it('goes to next and previous user', () => {
     cy.get('@stories').click('right').click('right')
 
-    cy.get(
-      'img[src="https://picsum.photos/id/1016/480/840"]'
-    ).positionToViewport('left')
+    cy.get('img[src*="1029"]').should('be.visible').positionToViewport('inside')
 
-    cy.get(
-      'img[src="https://picsum.photos/id/1025/480/840"]'
-    ).positionToViewport('right')
+    cy.get('img[src*="1016"]')
+      .should('not.be.visible')
+      .positionToViewport('left')
+
+    cy.get('img[src*="1025"]')
+      .should('not.be.visible')
+      .positionToViewport('right')
 
     cy.get('@stories').click('left')
 
-    cy.get(
-      'img[src="https://picsum.photos/id/1029/480/840"]'
-    ).positionToViewport('right')
+    cy.get('img[src*="1029"]')
+      .should('not.be.visible')
+      .positionToViewport('right')
+
+    cy.get('img[src*="1015"]').should('be.visible').positionToViewport('inside')
   })
 })
 
