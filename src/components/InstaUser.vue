@@ -1,6 +1,9 @@
 <template>
-  <section class="relative user">
-    <h2 class="absolute z-10 font-bold right-8 top-4">
+  <section
+    class="relative grid snap-start always-stop"
+    style="grid: [story] 1fr / [story] 1fr"
+  >
+    <h2 class="absolute z-10 font-bold select-none right-8 top-4">
       {{ '@' + user.username }}
     </h2>
     <InstaStory
@@ -56,14 +59,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.user {
-  display: grid;
-  position: relative;
-  grid: [story] 1fr / [story] 1fr;
-
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-</style>

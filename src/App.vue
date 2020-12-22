@@ -1,5 +1,5 @@
 <template>
-  <div class="stories" ref="stories" data-cy="stories">
+  <div class="stories" data-cy="stories">
     <InstaUser
       v-for="user in users"
       :user="user"
@@ -77,10 +77,6 @@ export default {
         }
         return
       }
-
-      /*         this.$once('hook:destroyed', () => {
-      document.removeEventListener('keydown', closeOnEsc)
-    }) */
     })
   },
 }
@@ -96,7 +92,6 @@ export default {
     0 40.2px 24px hsl(200 95% 3% / 0.077), 0 75.2px 44px hsl(200 95% 3% / 0.093),
     0 180px 80px hsl(200 95% 3% / 0.13);
 
-  /* Start Here! */
   display: grid;
   /* Check devtools to see the values expanded */
   grid: 1fr / auto-flow 100%;
@@ -106,7 +101,7 @@ export default {
   scroll-snap-type: x mandatory;
   overscroll-behavior: contain;
   touch-action: pan-x;
-  /* overscroll-behavior-x: contain;*/
+  overscroll-behavior-x: contain;
 }
 
 @media (hover: hover) {

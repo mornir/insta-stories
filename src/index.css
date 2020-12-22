@@ -3,6 +3,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+  .snap-start {
+    scroll-snap-align: start;
+  }
+  .always-stop {
+    scroll-snap-stop: always;
+  }
+}
+
 ::-webkit-scrollbar {
   display: none;
 }

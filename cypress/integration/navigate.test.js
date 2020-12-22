@@ -11,10 +11,10 @@ context('Touch Navigation', () => {
   it('goes to next and previous story', () => {
     cy.get('@stories').click('right')
     cy.get('img[src*="1016"]').should('not.be.visible')
-    cy.get('.seen img').should('have.attr', 'src').and('contain', '1016')
+    cy.get('.opacity-0 img').should('have.attr', 'src').and('contain', '1016')
 
     cy.get('@stories').click('left')
-    cy.get('img[src*="1016"]').should('not.have.class', 'seen')
+    cy.get('img[src*="1016"]').should('not.have.class', 'opacity-0')
     cy.get('img[src*="1016"]').should('be.visible')
   })
 
@@ -38,10 +38,10 @@ context('Keyboard Navigation', () => {
   it('goes to next and previous story', () => {
     cy.get('body').type('{downarrow}')
     cy.get('img[src*="1016"]').should('not.be.visible')
-    cy.get('.seen img').should('have.attr', 'src').and('contain', '1016')
+    cy.get('.opacity-0 img').should('have.attr', 'src').and('contain', '1016')
 
     cy.get('body').type('{uparrow}')
-    cy.get('img[src*="1016"]').should('not.have.class', 'seen')
+    cy.get('img[src*="1016"]').should('not.have.class', 'opacity-0')
     cy.get('img[src*="1016"]').should('be.visible')
   })
 
