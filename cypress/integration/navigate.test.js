@@ -1,26 +1,35 @@
 /// <reference types="cypress" />
 
-context("Navigation", () => {
-  it.only("goes to next story with tap", () => {
-    cy.viewport("iphone-6")
-    cy.visit("/")
+context('Navigation', () => {
+  it('goes to next and previous story with tap', () => {
+    cy.viewport('iphone-6')
+    cy.visit('/')
 
-    cy.get('[data-cy="stories"]').click("right")
+    cy.get('[data-cy="stories"]').as('stories')
 
-    /*     cy.get(".seen img").should(
-      "have.attr",
-      "src",
-      "https://picsum.photos/id/1016/480/840"
+    cy.get('@stories').click('right')
+
+    cy.get('.seen img')
+      .should('have.attr', 'src')
+      .and('eq', 'https://picsum.photos/id/1016/480/840')
+
+    cy.get('@stories').click('left')
+    cy.get('img[src="https://picsum.photos/id/1016/480/840"]').should(
+      'not.have.class',
+      'seen'
     )
-    cy.get('[data-cy="stories"]').click("left")
-    cy.get(".seen img").should(
-      "have.attr",
-      "src",
-      "https://picsum.photos/id/1015/480/840"
-    ) */
   })
 
-  /*   it("redirects to 404 page if movie does not exist", () => {}) */
+  it.only('goes to next and previous user', () => {
+    cy.viewport('iphone-6')
+    cy.visit('/')
+
+    cy.get('[data-cy="stories"]').as('stories')
+
+    cy.get('@stories').click('right').click('right')
+
+    cy.isInViewport('img[src="https://picsum.photos/id/1029/480/840"]')
+  })
 })
 
 /* context("Preview Mode", () => {
