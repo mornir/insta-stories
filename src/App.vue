@@ -17,18 +17,6 @@ export default {
       users,
     }
   },
-  methods: {
-    flipStory(e) {
-      const stories = this.$refs.stories
-
-      // offsetLeft is only relevant for desktop and tablets
-      const median = stories.offsetLeft + stories.clientWidth / 2
-
-      const state = {
-        current_story: stories.firstElementChild.lastElementChild,
-      }
-    },
-  },
   mounted() {
     const stories = document.querySelector('.stories')
     document.addEventListener('keydown', ({ key }) => {
