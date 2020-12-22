@@ -15,7 +15,6 @@ export default {
   data() {
     return {
       users,
-      userIndex: 0,
     }
   },
   methods: {
@@ -32,10 +31,8 @@ export default {
   },
   mounted() {
     const stories = document.querySelector('.stories')
-    // stories.focus()
     document.addEventListener('keydown', ({ key }) => {
       if (key === 'ArrowLeft') {
-        this.userIndex--
         stories.scrollBy({
           left: -stories.clientWidth,
           behavior: 'smooth',
@@ -44,7 +41,6 @@ export default {
       }
 
       if (key === 'ArrowRight') {
-        this.userIndex++
         stories.scrollBy({
           left: stories.clientWidth,
           behavior: 'smooth',
@@ -53,7 +49,26 @@ export default {
       }
 
       if (key === 'ArrowDown') {
-        console.log('arrowdone!')
+        let storiesLength = this.users[3].stories.length
+
+        for (let i = 1; i < storiesLength; i++) {
+          if (!this.users[3].stories[storiesLength - i].seen) {
+            this.users[3].stories[storiesLength - i].seen = true
+            break
+          }
+        }
+        return
+      }
+
+      if (key === 'ArrowUp') {
+        let storiesLength = this.users[3].stories.length
+
+        for (let i = 0; i < storiesLength; i++) {
+          if (this.users[3].stories[i].seen) {
+            this.users[3].stories[i].seen = false
+            break
+          }
+        }
         return
       }
 
