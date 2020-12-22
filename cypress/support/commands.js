@@ -24,6 +24,22 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
+Cypress.Commands.add('checkCarousel', (left, middle, right) => {
+  if (left) {
+    cy.get(`img[src*="${left}"]`)
+      .should('not.be.visible')
+      .positionToViewport('left')
+  }
+
+  cy.get(`img[src*="${middle}"]`)
+    .should('be.visible')
+    .positionToViewport('inside')
+
+  cy.get(`img[src*="${right}"]`)
+    .should('not.be.visible')
+    .positionToViewport('right')
+})
+
 Cypress.Commands.add(
   'positionToViewport',
   { prevSubject: true },
