@@ -65,11 +65,6 @@ export default {
 </script>
 
 <style>
-.username {
-  position: absolute;
-  right: 10px;
-}
-
 .user {
   display: grid;
   position: relative;
