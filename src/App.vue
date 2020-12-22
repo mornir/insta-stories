@@ -1,6 +1,11 @@
 <template>
   <div class="stories" ref="stories" data-cy="stories">
-    <InstaUser v-for="user in users" :user="user" :key="user.username" />
+    <InstaUser
+      v-for="user in users"
+      :user="user"
+      :key="user.username"
+      @scrolled="scroll"
+    />
   </div>
 </template>
 
@@ -15,33 +20,46 @@ export default {
   data() {
     return {
       users,
+      userIndex: 0,
     }
   },
-  mounted() {
-    const stories = document.querySelector('.stories')
-    document.addEventListener('keydown', ({ key }) => {
-      if (key === 'ArrowLeft') {
-        stories.scrollBy({
-          left: -stories.clientWidth,
-          behavior: 'smooth',
-        })
-        return
-      }
+  methods: {
+    scroll(direction = 'right') {
+      const stories = document.querySelector('.stories')
 
-      if (key === 'ArrowRight') {
+      if (direction === 'right') {
+        this.userIndex++
         stories.scrollBy({
           left: stories.clientWidth,
           behavior: 'smooth',
         })
+      } else {
+        this.userIndex--
+        stories.scrollBy({
+          left: -stories.clientWidth,
+          behavior: 'smooth',
+        })
+      }
+    },
+  },
+  mounted() {
+    document.addEventListener('keydown', ({ key }) => {
+      if (key === 'ArrowLeft') {
+        this.scroll('left')
+        return
+      }
+
+      if (key === 'ArrowRight') {
+        this.scroll('right')
         return
       }
 
       if (key === 'ArrowDown') {
-        let storiesLength = this.users[3].stories.length
+        let storiesLength = this.users[this.userIndex].stories.length
 
         for (let i = 1; i < storiesLength; i++) {
-          if (!this.users[3].stories[storiesLength - i].seen) {
-            this.users[3].stories[storiesLength - i].seen = true
+          if (!this.users[this.userIndex].stories[storiesLength - i].seen) {
+            this.users[this.userIndex].stories[storiesLength - i].seen = true
             break
           }
         }
@@ -49,11 +67,11 @@ export default {
       }
 
       if (key === 'ArrowUp') {
-        let storiesLength = this.users[3].stories.length
+        let storiesLength = this.users[this.userIndex].stories.length
 
         for (let i = 0; i < storiesLength; i++) {
-          if (this.users[3].stories[i].seen) {
-            this.users[3].stories[i].seen = false
+          if (this.users[this.userIndex].stories[i].seen) {
+            this.users[this.userIndex].stories[i].seen = false
             break
           }
         }

@@ -27,7 +27,6 @@ export default {
   methods: {
     navigateStories(index, $event) {
       const stories = document.querySelector('.stories')
-
       const median = stories.clientWidth / 2
 
       // on bigger viewport, remove white margin
@@ -37,10 +36,7 @@ export default {
 
         if (index >= this.user.stories.length - 1) {
           console.info('previous user')
-          stories.scrollBy({
-            left: -stories.clientWidth,
-            behavior: 'smooth',
-          })
+          this.$emit('scrolled', 'left')
           return
         }
 
@@ -49,10 +45,7 @@ export default {
       } else {
         if (index <= 0) {
           console.info('next user')
-          stories.scrollBy({
-            left: stories.clientWidth,
-            behavior: 'smooth',
-          })
+          this.$emit('scrolled', 'right')
           return
         }
         // click right, next story
