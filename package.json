@@ -13,7 +13,7 @@
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "@vue/compiler-sfc": "^3.0.4",
     "autoprefixer": "9",
-    "cypress": "^6.1.0",
+    "cypress": "^6.2.0",
     "postcss": "7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "vite": "^1.0.0-rc.13"
