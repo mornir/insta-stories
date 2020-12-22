@@ -1,7 +1,16 @@
 <template>
-  <article class="story" :data-cy="story.img" :class="{ seen: story.seen }">
+  <article
+    class="transition-opacity duration-300 ease-in select-none touch-manipulation"
+    style="grid-area: story"
+    :data-cy="story.img"
+    :class="{ 'opacity-0 pointer-events-none': story.seen }"
+  >
     <figure class="relative h-full">
-      <img :src="story.img" :alt="story.title" />
+      <img
+        :src="story.img"
+        :alt="story.title"
+        class="block object-cover w-full h-full"
+      />
       <figcaption class="absolute font-bold top-4 left-8" v-if="story.title">
         {{ story.title }}
       </figcaption>
@@ -20,27 +29,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.story {
-  grid-area: story;
-
-  user-select: none;
-  touch-action: manipulation;
-
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 1, 1);
-}
-
-.story.seen {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.story img {
-  display: block;
-  height: 100%;
-  width: 100%;
-  object-position: top center;
-  object-fit: cover;
-}
-</style>
