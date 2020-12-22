@@ -24,26 +24,53 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('isNotInViewport', (element) => {
-  cy.get(element).then(($el) => {
-    const bottom = Cypress.$(cy.state('window')).height()
-    const rect = $el[0].getBoundingClientRect()
+Cypress.Commands.add(
+  'positionToViewport',
+  { prevSubject: true },
+  (element, position) => {
+    cy.get(element).should(($el) => {
+      const height = Cypress.$(cy.state('window')).height()
+      const width = Cypress.$(cy.state('window')).width()
+      const rect = $el[0].getBoundingClientRect()
 
-    expect(rect.top).to.be.greaterThan(bottom)
-    expect(rect.bottom).to.be.greaterThan(bottom)
-    expect(rect.top).to.be.greaterThan(bottom)
-    expect(rect.bottom).to.be.greaterThan(bottom)
-  })
-})
-
-Cypress.Commands.add('isInViewport', (element) => {
-  cy.get(element).then(($el) => {
-    const bottom = Cypress.$(cy.state('window')).height()
-    const rect = $el[0].getBoundingClientRect()
-
-    expect(rect.top).not.to.be.greaterThan(bottom)
-    expect(rect.bottom).not.to.be.greaterThan(bottom)
-    expect(rect.top).not.to.be.greaterThan(bottom)
-    expect(rect.bottom).not.to.be.greaterThan(bottom)
-  })
-})
+      if (position == 'inside') {
+        expect(
+          rect.top + rect.height / 2,
+          'element center not above viewport'
+        ).to.be.greaterThan(0)
+        expect(
+          rect.top + rect.height / 2,
+          'element center not below viewport'
+        ).to.be.lessThan(height)
+        expect(
+          rect.left + rect.width / 2,
+          'element center not left of viewport'
+        ).to.be.greaterThan(0)
+        expect(
+          (rect.left, +(rect.width / 2)),
+          'element center not right of viewport'
+        ).to.be.lessThan(width)
+      } else if (position == 'above') {
+        expect(
+          rect.top + rect.height / 2,
+          'element center above viewport'
+        ).to.be.lessThan(0)
+      } else if (position == 'below') {
+        expect(
+          rect.top + rect.height / 2,
+          'element center below viewport'
+        ).to.be.greaterThan(height)
+      } else if (position == 'left') {
+        expect(
+          rect.left + rect.width / 2,
+          'element center left of viewport'
+        ).to.be.lessThan(0)
+      } else if (position == 'right') {
+        expect(
+          rect.left + rect.width / 2,
+          'element center right of viewport'
+        ).to.be.greaterThan(width)
+      }
+    })
+  }
+)

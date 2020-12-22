@@ -1,12 +1,14 @@
 /// <reference types="cypress" />
 
 context('Navigation', () => {
-  it('goes to next and previous story with tap', () => {
+  beforeEach(() => {
     cy.viewport('iphone-6')
     cy.visit('/')
 
     cy.get('[data-cy="stories"]').as('stories')
+  })
 
+  it('goes to next and previous story with tap', () => {
     cy.get('@stories').click('right')
 
     cy.get('.seen img')
@@ -21,14 +23,21 @@ context('Navigation', () => {
   })
 
   it.only('goes to next and previous user', () => {
-    cy.viewport('iphone-6')
-    cy.visit('/')
-
-    cy.get('[data-cy="stories"]').as('stories')
-
     cy.get('@stories').click('right').click('right')
 
-    cy.isInViewport('img[src="https://picsum.photos/id/1029/480/840"]')
+    cy.get(
+      'img[src="https://picsum.photos/id/1016/480/840"]'
+    ).positionToViewport('left')
+
+    cy.get(
+      'img[src="https://picsum.photos/id/1025/480/840"]'
+    ).positionToViewport('right')
+
+    cy.get('@stories').click('left')
+
+    cy.get(
+      'img[src="https://picsum.photos/id/1029/480/840"]'
+    ).positionToViewport('right')
   })
 })
 
