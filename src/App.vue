@@ -31,6 +31,8 @@ export default {
   },
   methods: {
     scroll(direction = 'right') {
+      if (this.userIndex >= this.users.length - 1) return
+
       this.storyIndex = 0
       const stories = document.querySelector('.stories')
 
@@ -50,7 +52,8 @@ export default {
     },
     swipeStory(direction = 'down') {
       let storiesLength = this.stories.length
-      if ((direction = 'down')) {
+      if (direction === 'down') {
+        console.info('next story')
         this.storyIndex++
         for (let i = 1; i < storiesLength; i++) {
           if (!this.stories[storiesLength - i].seen) {
@@ -60,6 +63,7 @@ export default {
         }
         return
       } else {
+        console.info('previous story')
         this.storyIndex--
         for (let i = 0; i < storiesLength; i++) {
           if (this.stories[i].seen) {
@@ -75,21 +79,11 @@ export default {
 
       // on bigger viewport, remove white margin
       if (e.clientX - stories.offsetLeft > median) {
-        if (this.storyIndex < this.stories.length - 1) {
-          console.info('next story')
-          this.swipeStory('down')
-        } else {
-          console.info('next user')
-          this.scroll('right')
-        }
+        this.storyIndex < this.stories.length - 1
+          ? this.swipeStory('down')
+          : this.scroll('right')
       } else {
-        if (this.storyIndex > 0) {
-          console.info('previous story')
-          this.swipeStory('up')
-        } else {
-          console.info('previous user')
-          this.scroll('left')
-        }
+        this.storyIndex > 0 ? this.swipeStory('up') : this.scroll('left')
       }
     },
   },
