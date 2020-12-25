@@ -4,7 +4,7 @@
       v-for="user in users"
       :user="user"
       :key="user.username"
-      @scrolled="scroll"
+      @click="navigateStories"
     />
   </div>
 </template>
@@ -21,10 +21,17 @@ export default {
     return {
       users,
       userIndex: 0,
+      storyIndex: 0,
     }
+  },
+  computed: {
+    stories() {
+      return this.users[this.userIndex].stories
+    },
   },
   methods: {
     scroll(direction = 'right') {
+      this.storyIndex = 0
       const stories = document.querySelector('.stories')
 
       if (direction === 'right') {
@@ -41,6 +48,50 @@ export default {
         })
       }
     },
+    swipeStory(direction = 'down') {
+      let storiesLength = this.stories.length
+      if ((direction = 'down')) {
+        this.storyIndex++
+        for (let i = 1; i < storiesLength; i++) {
+          if (!this.stories[storiesLength - i].seen) {
+            this.stories[storiesLength - i].seen = true
+            break
+          }
+        }
+        return
+      } else {
+        this.storyIndex--
+        for (let i = 0; i < storiesLength; i++) {
+          if (this.stories[i].seen) {
+            this.stories[i].seen = false
+            break
+          }
+        }
+      }
+    },
+    navigateStories(e) {
+      const stories = document.querySelector('.stories')
+      const median = stories.clientWidth / 2
+
+      // on bigger viewport, remove white margin
+      if (e.clientX - stories.offsetLeft > median) {
+        if (this.storyIndex < this.stories.length - 1) {
+          console.info('next story')
+          this.swipeStory('down')
+        } else {
+          console.info('next user')
+          this.scroll('right')
+        }
+      } else {
+        if (this.storyIndex > 0) {
+          console.info('previous story')
+          this.swipeStory('up')
+        } else {
+          console.info('previous user')
+          this.scroll('left')
+        }
+      }
+    },
   },
   mounted() {
     document.addEventListener('keydown', ({ key }) => {
@@ -55,26 +106,12 @@ export default {
       }
 
       if (key === 'ArrowDown') {
-        let storiesLength = this.users[this.userIndex].stories.length
-
-        for (let i = 1; i < storiesLength; i++) {
-          if (!this.users[this.userIndex].stories[storiesLength - i].seen) {
-            this.users[this.userIndex].stories[storiesLength - i].seen = true
-            break
-          }
-        }
+        this.swipeStory('down')
         return
       }
 
       if (key === 'ArrowUp') {
-        let storiesLength = this.users[this.userIndex].stories.length
-
-        for (let i = 0; i < storiesLength; i++) {
-          if (this.users[this.userIndex].stories[i].seen) {
-            this.users[this.userIndex].stories[i].seen = false
-            break
-          }
-        }
+        this.swipeStory('up')
         return
       }
     })
@@ -86,7 +123,7 @@ export default {
 .stories {
   height: 100vh;
   width: 100vw;
-
+  position: relative;
   box-shadow: 0 5px 2.5px hsl(200 95% 3% / 0.037),
     0 12px 6.5px hsl(200 95% 3% / 0.053), 0 22.5px 13px hsl(200 95% 3% / 0.065),
     0 40.2px 24px hsl(200 95% 3% / 0.077), 0 75.2px 44px hsl(200 95% 3% / 0.093),
